@@ -3,7 +3,10 @@
 A fast, readable scripting language built in Rust.
 
 [![CI — Lang](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml)
-[![CI — IDE](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
+[![CI — Playground](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
+[![CI — Docs](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml)
+[![Deploy](https://github.com/otabekoff/zink/actions/workflows/deploy.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/deploy.yml)
+[![Release](https://img.shields.io/github/v/release/otabekoff/zink?label=Release&color=blue)](https://github.com/otabekoff/zink/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ```zink
@@ -25,7 +28,7 @@ say "Doubled: {doubled}"
 - **Fast** — Rust-powered interpreter, instant startup
 - **Beginner-friendly** — `say "Hello!"` is a valid program
 - **Batteries included** — 30+ built-in functions out of the box
-- **Try online** — Full browser playground at [zink-lang.github.io/playground](https://zink-lang.github.io/playground/)
+- **Try online** — Full browser playground at [otabekoff.github.io/zink/playground](https://otabekoff.github.io/zink/playground/)
 
 ## Quick Start
 
@@ -86,15 +89,17 @@ zink/
 | **Lang**    | `cargo build --release`    | Build optimized binary   |
 | **Lang**    | `cargo test`               | Run tests                |
 | **Lang**    | `cargo run -- FILE`        | Run a .zink file         |
-| **IDE**     | `npm run dev`              | Dev server (hot reload)  |
-| **IDE**     | `npm run build`            | Production build         |
-| **IDE**     | `npm run lint`             | ESLint                   |
+| **Playground** | `bun run dev`           | Dev server (hot reload)  |
+| **Playground** | `bun run build`         | Production build         |
+| **Playground** | `bun run lint`          | ESLint                   |
+| **Extension**  | `npm run compile`       | Compile extension        |
+| **Extension**  | `npm run package`       | Package VSIX             |
 | **Docs**    | `bun run dev`              | Docs dev server          |
 | **Docs**    | `bun run build`            | Production build         |
 
 ## Documentation
 
-Read the full docs at [zink-lang.github.io/docs](https://zink-lang.github.io/docs/) or browse [docs/](docs/) locally.
+Read the full docs at [otabekoff.github.io/zink](https://otabekoff.github.io/zink/) or browse [docs/](docs/) locally.
 
 ## Contributing
 
