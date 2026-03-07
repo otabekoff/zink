@@ -1,0 +1,78 @@
+name: Deploy — Docs & Playground
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "playground/**"
+      - "lang/editors/**"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # ── Build docs (VitePress) ──
+      - name: Install docs dependencies
+        working-directory: docs
+        run: bun install
+
+      - name: Build docs
+        working-directory: docs
+        run: bun run build
+
+      # ── Build playground (Vite + React) ──
+      - name: Install playground dependencies
+        working-directory: playground
+        run: bun install
+
+      - name: Build playground
+        working-directory: playground
+        run: bun run build
+
+      # ── Merge into single site ──
+      - name: Merge docs + playground
+        run: |
+          mkdir -p docs/.vitepress/dist/playground
+          cp -r playground/dist/* docs/.vitepress/dist/playground/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

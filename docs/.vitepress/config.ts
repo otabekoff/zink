@@ -14,10 +14,11 @@ const zinkGrammar = JSON.parse(
 export default defineConfig({
   title: 'Zink',
   description: 'A fast, readable scripting language built in Rust',
+  base: '/zink/',
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon.png' }],
-    ['link', { rel: 'apple-touch-icon', sizes: '256x256', href: '/icon.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/zink/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/zink/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '256x256', href: '/zink/icon.png' }],
   ],
   cleanUrls: true,
   markdown: {
@@ -28,7 +29,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Reference', link: '/reference/syntax' },
-      { text: 'Playground', link: 'https://zink-lang.github.io/playground/' },
+      { text: 'Playground', link: '/zink/playground/' },
       {
         text: 'v0.1.0',
         items: [
