@@ -2,11 +2,11 @@
 
 A fast, readable scripting language built in Rust.
 
-[![CI — Lang](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-lang.yml?label=Lang&logo=rust&logoColor=white)](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml)
-[![CI — Playground](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-ide.yml?label=Playground&logo=react)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
-[![CI — Docs](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-docs.yml?label=Docs&logo=vitepress)](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml)
-[![Deploy](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/deploy.yml?label=Deploy&logo=github)](https://github.com/otabekoff/zink/actions/workflows/deploy.yml)
-[![VS Code Extension](https://img.shields.io/visual-studio-marketplace/v/otabekoff.zink-lang?label=Extension&logo=visualstudiocode&color=blue)](https://marketplace.visualstudio.com/items?itemName=otabekoff.zink-lang)
+[![CI — Lang](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-lang.yml?branch=main&label=Lang&logo=rust&logoColor=white)](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml)
+[![CI — Playground](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-ide.yml?branch=main&label=Playground&logo=react)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
+[![CI — Docs](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-docs.yml?branch=main&label=Docs&logo=vitepress)](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/deploy.yml?branch=main&label=Deploy&logo=github)](https://github.com/otabekoff/zink/actions/workflows/deploy.yml)
+[![Extension](https://img.shields.io/badge/Extension-v0.1.0-blue?logo=visualstudiocode&logoColor=white)](https://github.com/otabekoff/zink/releases/latest)
 [![Release](https://img.shields.io/github/v/release/otabekoff/zink?label=Release&logo=github&color=blue)](https://github.com/otabekoff/zink/releases/latest)
 [![License](https://img.shields.io/github/license/otabekoff/zink?label=License&color=green)](LICENSE)
 
