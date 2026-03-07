@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bolt-dark" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="glow-d">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Amber bolt on transparent — for dark backgrounds -->
+  <g filter="url(#glow-d)">
+    <path d="M 148 24 L 68 136 L 116 136 L 108 232 L 188 120 L 140 120 Z" fill="url(#bolt-dark)" stroke="#fbbf24" stroke-width="1" stroke-opacity="0.3"/>
+  </g>
+</svg>

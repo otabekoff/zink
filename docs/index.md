@@ -6,7 +6,8 @@ hero:
   text: A fast, readable scripting language
   tagline: Built in Rust. Designed for humans. Easy to learn, fun to write.
   image:
-    src: /favicon.svg
+    light: /logo-light.svg
+    dark: /logo-dark.svg
     alt: Zink Logo
   actions:
     - theme: brand

@@ -25,7 +25,7 @@ export default defineConfig({
     languages: [zinkGrammar],
   },
   themeConfig: {
-    logo: '/favicon.svg',
+    logo: { light: '/logo-light.svg', dark: '/logo-dark.svg', alt: 'Zink' },
     siteTitle: 'Zink',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
