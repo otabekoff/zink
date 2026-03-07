@@ -12,7 +12,8 @@ let initPromise: Promise<void> | null = null;
 export async function initZink(): Promise<void> {
   if (ready) return;
   if (!initPromise) {
-    initPromise = __wbg_init({ module_or_path: "/zink_lang_bg.wasm" }).then(() => {
+    const base = import.meta.env.BASE_URL || "/";
+    initPromise = __wbg_init({ module_or_path: `${base}zink_lang_bg.wasm` }).then(() => {
       ready = true;
     });
   }

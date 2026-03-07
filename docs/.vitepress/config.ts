@@ -29,7 +29,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Reference', link: '/reference/syntax' },
-      { text: 'Playground', link: '/zink/playground/' },
+      { text: 'Playground', link: '/playground/' },
       {
         text: 'v0.1.0',
         items: [
