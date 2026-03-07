@@ -1,0 +1,9 @@
+# Hello, Zink!
+fn greet(name) {
+  say "Hello, {name}! Welcome to Zink."
+}
+
+greet("World")
+
+let nums = [1, 2, 3, 4, 5]
+say "Sum: {reduce(nums, fn(a,b){return a+b}, 0)}"

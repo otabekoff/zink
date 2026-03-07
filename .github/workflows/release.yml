@@ -1,0 +1,151 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create.outputs.upload_url }}
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        id: create
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Zink ${{ github.ref_name }}
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') || contains(github.ref, '-rc') }}
+
+  build-binaries:
+    name: Build ${{ matrix.artifact }}
+    needs: create-release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            artifact: zink-linux-x64
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            artifact: zink-macos-arm64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            artifact: zink-windows-x64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Build release
+        working-directory: lang
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Package (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd lang/target/${{ matrix.target }}/release
+          tar czf ${{ matrix.artifact }}-${{ github.ref_name }}.tar.gz zink
+          mv ${{ matrix.artifact }}-${{ github.ref_name }}.tar.gz ../../../../
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cd lang/target/${{ matrix.target }}/release
+          Compress-Archive -Path zink.exe -DestinationPath ${{ matrix.artifact }}-${{ github.ref_name }}.zip
+          Move-Item ${{ matrix.artifact }}-${{ github.ref_name }}.zip ../../../../
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ matrix.artifact }}-${{ github.ref_name }}.tar.gz
+            ${{ matrix.artifact }}-${{ github.ref_name }}.zip
+
+  build-extension:
+    name: Build VS Code Extension
+    needs: create-release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: extension
+        run: npm ci || npm install
+
+      - name: Compile & Package
+        working-directory: extension
+        run: |
+          npm run compile
+          npx @vscode/vsce package
+
+      - name: Upload VSIX to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: extension/zink-lang-*.vsix
+
+  build-docs:
+    name: Build & Deploy Docs
+    needs: create-release
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: docs
+        run: bun install
+
+      - name: Build docs
+        working-directory: docs
+        run: bun run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,16 @@
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @otabekoff
+
+# Interpreter
+/lang/ @otabekoff
+
+# Playground
+/playground/ @otabekoff
+
+# Documentation
+/docs/ @otabekoff
+
+# VS Code Extension
+/extension/ @otabekoff
