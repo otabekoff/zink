@@ -5,13 +5,16 @@ hero:
   name: Zink
   text: A fast, readable scripting language
   tagline: Built in Rust. Designed for humans. Easy to learn, fun to write.
+  image:
+    src: /favicon.svg
+    alt: Zink Logo
   actions:
     - theme: brand
       text: Get Started
       link: /guide/getting-started
     - theme: alt
       text: Playground
-      link: https://zink-lang.github.io/playground/
+      link: /playground/
 
 features:
   - title: ⚡ Fast

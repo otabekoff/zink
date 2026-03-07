@@ -25,7 +25,8 @@ export default defineConfig({
     languages: [zinkGrammar],
   },
   themeConfig: {
-    siteTitle: '⚡ Zink',
+    logo: '/favicon.svg',
+    siteTitle: 'Zink',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Reference', link: '/reference/syntax' },
