@@ -1,0 +1,16 @@
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @nicbarker
+
+# Interpreter
+/lang/ @nicbarker
+
+# Playground
+/playground/ @nicbarker
+
+# Documentation
+/docs/ @nicbarker
+
+# VS Code Extension
+/extension/ @nicbarker

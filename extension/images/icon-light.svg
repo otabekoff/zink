@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bolt-light" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+  <!-- Dark navy bolt on transparent — for light backgrounds -->
+  <path d="M 148 24 L 68 136 L 116 136 L 108 232 L 188 120 L 140 120 Z" fill="url(#bolt-light)" stroke="#16213e" stroke-width="1" stroke-opacity="0.2"/>
+</svg>

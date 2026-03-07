@@ -1,0 +1,182 @@
+{
+  "name": "zink-lang",
+  "displayName": "Zink Language",
+  "description": "Full-featured Zink language support — syntax highlighting, snippets, run/debug, and REPL integration",
+  "version": "0.1.0",
+  "publisher": "zink-lang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicbarker/zink"
+  },
+  "bugs": {
+    "url": "https://github.com/nicbarker/zink/issues"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "workspaceContains:**/*.zink"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "zink",
+    "scripting",
+    "syntax highlighting",
+    "programming language",
+    "repl"
+  ],
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "zink",
+        "aliases": [
+          "Zink",
+          "zink"
+        ],
+        "extensions": [
+          ".zink"
+        ],
+        "icon": {
+          "light": "./images/icon-light.svg",
+          "dark": "./images/icon-dark.svg"
+        },
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "zink",
+        "scopeName": "source.zink",
+        "path": "./syntaxes/zink.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "zink",
+        "path": "./snippets/zink.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "zink.runFile",
+        "title": "Zink: Run File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "zink.runSelection",
+        "title": "Zink: Run Selection / Line"
+      },
+      {
+        "command": "zink.openRepl",
+        "title": "Zink: Open REPL",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "zink.buildBinary",
+        "title": "Zink: Build Interpreter (cargo build)"
+      },
+      {
+        "command": "zink.restartRepl",
+        "title": "Zink: Restart REPL"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "zink.runFile",
+          "when": "resourceLangId == zink",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "zink.runFile",
+          "when": "resourceLangId == zink",
+          "group": "1_run@1"
+        },
+        {
+          "command": "zink.runSelection",
+          "when": "resourceLangId == zink && editorHasSelection",
+          "group": "1_run@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "zink.runFile",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r",
+        "when": "resourceLangId == zink"
+      },
+      {
+        "command": "zink.runSelection",
+        "key": "ctrl+shift+enter",
+        "mac": "cmd+shift+enter",
+        "when": "resourceLangId == zink && editorHasSelection"
+      },
+      {
+        "command": "zink.openRepl",
+        "key": "ctrl+shift+z",
+        "mac": "cmd+shift+z",
+        "when": "resourceLangId == zink"
+      }
+    ],
+    "configuration": {
+      "title": "Zink",
+      "properties": {
+        "zink.interpreterPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the Zink interpreter binary. Leave empty to use 'zink' from PATH."
+        },
+        "zink.runInIntegratedTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run Zink files in the integrated terminal (true) or output channel (false)."
+        },
+        "zink.clearTerminalBeforeRun": {
+          "type": "boolean",
+          "default": true,
+          "description": "Clear the terminal before running a Zink file."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node ./node_modules/typescript/bin/tsc -p ./",
+    "watch": "node ./node_modules/typescript/bin/tsc -watch -p ./",
+    "lint": "eslint src/",
+    "test": "node ./out/test/runTest.js",
+    "package": "npx @vscode/vsce package",
+    "install-ext": "npx @vscode/vsce package && code --install-extension zink-lang-0.1.0.vsix --force",
+    "publish": "npx @vscode/vsce publish"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.75.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.2.0",
+    "glob": "^13.0.6",
+    "mocha": "^11.3.0",
+    "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "mocha": {
+      "serialize-javascript": "^7.0.4"
+    }
+  }
+}

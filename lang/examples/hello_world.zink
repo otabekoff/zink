@@ -1,0 +1,8 @@
+# Welcome to Zink! ⚡
+# Lines starting with # are comments
+
+say "Hello, World!"
+say "Zink is fast, simple, and fun!"
+
+let name = "developer"
+say "Welcome aboard, {name}!"

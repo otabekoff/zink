@@ -1,0 +1,45 @@
+# ─── OS ───
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ─── Editors ───
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Rust (lang) ───
+lang/target/
+
+# ─── Node (playground, docs) ───
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.tgz
+
+# ─── Logs ───
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Build outputs ───
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+playground/dist/
+extension/*.vsix
+
+# ─── Env ───
+.env
+.env.*
+!.env.example
+
+# ─── Coverage ───
+coverage/
+*.lcov

@@ -1,0 +1,21 @@
+[package]
+name = "zink"
+version = "0.1.0"
+edition = "2024"
+authors = ["Zink Language Team"]
+description = "Zink — a fast, readable scripting language built in Rust"
+license = "MIT"
+
+[lib]
+name = "zink_lang"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "zink"
+path = "src/main.rs"
+
+[dependencies]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2"
+js-sys = "0.3"

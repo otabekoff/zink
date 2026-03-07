@@ -1,0 +1,15 @@
+let x = 42
+let y = 7
+
+say "=== Arithmetic ==="
+say "{x} + {y} = {x + y}"
+say "{x} - {y} = {x - y}"
+say "{x} * {y} = {x * y}"
+say "{x} / {y} = {x / y}"
+say "{x} % {y} = {x % y}"
+
+let pi = 3.14159
+let radius = 5
+let area = pi * radius * radius
+say ""
+say "Circle area (r={radius}): {area}"
