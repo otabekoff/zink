@@ -64,8 +64,8 @@ while i < len(colors) {
 | `len(arr)`                 | Number of elements                       |
 | `push(arr, value)`         | Add to end                               |
 | `pop(arr)`                 | Remove and return last element           |
-| `reverse(arr)`             | Reverse in place                         |
-| `sort(arr)`                | Sort in place                            |
+| `reverse(arr)`             | Reverse in place (mutates)               |
+| `sort(arr)`                | Sort in place (mutates)                  |
 | `slice(arr, start, end)`   | Return sub-array                         |
 | `contains(arr, value)`     | Check if value exists                    |
 | `join(arr, separator)`     | Join elements into a string              |

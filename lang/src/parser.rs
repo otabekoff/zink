@@ -1,7 +1,6 @@
 // src/parser.rs — Zink Language Parser
 // Recursive-descent parser producing an AST
 
-#![allow(dead_code)]
 use crate::lexer::{Token, TokenKind};
 
 // ── AST Node Types ──────────────────────────────────────────────
@@ -86,7 +85,7 @@ pub enum Expr {
     Lambda {
         params: Vec<String>,
         body: Vec<Stmt>,
-    }, // ← add this line
+    },
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -151,10 +150,6 @@ impl Parser {
             self.pos += 1;
         }
         t
-    }
-
-    fn check(&self, kind: &TokenKind) -> bool {
-        std::mem::discriminant(&self.peek().kind) == std::mem::discriminant(kind)
     }
 
     fn check_exact(&self, kind: &TokenKind) -> bool {
@@ -571,8 +566,8 @@ impl Parser {
         }
     }
 
-    // Public wrapper used by the interpreter for string interpolation
-    pub fn _expr_pub(&mut self) -> Result<Expr, ParseError> {
+    /// Public wrapper used by the interpreter for string interpolation.
+    pub fn parse_expr_pub(&mut self) -> Result<Expr, ParseError> {
         self.parse_expr()
     }
 }

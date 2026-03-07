@@ -57,7 +57,6 @@ impl Value {
             Value::Bool(false) | Value::Nil => false,
             Value::Number(n) if *n == 0.0 => false,
             Value::Str(s) if s.is_empty() => false,
-            Value::Array(a) if a.borrow().is_empty() => false,
             _ => true,
         }
     }
@@ -185,7 +184,7 @@ impl Interpreter {
         let builtins = [
             "len", "push", "pop", "str", "num", "floor", "ceil", "round", "abs", "sqrt", "pow",
             "max", "min", "random", "range", "type", "contains", "join", "split", "upper", "lower",
-            "trim", "slice", "reverse", "sort", "map", "filter", "reduce", "keys",
+            "trim", "slice", "reverse", "sort", "map", "filter", "reduce",
         ];
         for name in builtins {
             self.global.define(name, Value::NativeFn(name.to_string()));
@@ -320,8 +319,7 @@ impl Interpreter {
 
             Stmt::Say { value, .. } => {
                 let v = self.eval_expr(value, env)?;
-                let line = self.interpolate(v, env)?;
-                self.output.push(line);
+                self.output.push(v.display());
             }
 
             Stmt::Expr { expr } => {
@@ -338,7 +336,10 @@ impl Interpreter {
     fn eval_expr(&mut self, expr: &Expr, env: &Env) -> Result<Value, RuntimeError> {
         match expr {
             Expr::Number(n) => Ok(Value::Number(*n)),
-            Expr::Str(s) => Ok(Value::Str(s.clone())),
+            Expr::Str(s) => {
+                let interpolated = self.interpolate(Value::Str(s.clone()), env)?;
+                Ok(Value::Str(interpolated))
+            }
             Expr::Bool(b) => Ok(Value::Bool(*b)),
             Expr::Nil => Ok(Value::Nil),
 
@@ -577,7 +578,7 @@ impl Interpreter {
                 match args.first() {
                     Some(Value::Number(_)) => "number",
                     Some(Value::Str(_)) => "string",
-                    Some(Value::Bool(_)) => "bool",
+                    Some(Value::Bool(_)) => "boolean",
                     Some(Value::Nil) => "null",
                     Some(Value::Array(_)) => "array",
                     Some(Value::Function { .. }) | Some(Value::NativeFn(_)) => "function",
@@ -636,21 +637,25 @@ impl Interpreter {
                         borrowed[start..end].to_vec(),
                     ))))
                 }
-                _ => Err(rerr!(0, "slice() expects (array, start, end)")),
+                [Value::Str(s), Value::Number(start), Value::Number(end)] => {
+                    let chars: Vec<char> = s.chars().collect();
+                    let start = *start as usize;
+                    let end = (*end as usize).min(chars.len());
+                    Ok(Value::Str(chars[start..end].iter().collect()))
+                }
+                _ => Err(rerr!(0, "slice() expects (array|string, start, end)")),
             },
             "reverse" => match args.first() {
                 Some(Value::Array(a)) => {
-                    let mut v = a.borrow().clone();
-                    v.reverse();
-                    Ok(Value::Array(Rc::new(RefCell::new(v))))
+                    a.borrow_mut().reverse();
+                    Ok(Value::Array(a.clone()))
                 }
                 _ => Err(rerr!(0, "reverse() expects array")),
             },
             "sort" => match args.first() {
                 Some(Value::Array(a)) => {
-                    let mut v = a.borrow().clone();
-                    v.sort_by_key(|x| x.display());
-                    Ok(Value::Array(Rc::new(RefCell::new(v))))
+                    a.borrow_mut().sort_by_key(|x| x.display());
+                    Ok(Value::Array(a.clone()))
                 }
                 _ => Err(rerr!(0, "sort() expects array")),
             },
@@ -774,7 +779,7 @@ impl Interpreter {
             .map_err(|e| rerr!(e.line, "{}", e.message))?;
         let mut parser = Parser::new(tokens);
         let expr = parser
-            ._expr_pub()
+            .parse_expr_pub()
             .map_err(|e| rerr!(e.line, "{}", e.message))?;
         self.eval_expr(&expr, env)
     }

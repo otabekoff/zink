@@ -25,7 +25,7 @@ features:
   - title: 🎓 Beginner-Friendly
     details: Learn programming without fighting the language. say "Hello!" is a valid program.
   - title: 🧩 Batteries Included
-    details: 30+ built-in functions — math, strings, arrays, higher-order functions, and more.
+    details: 28 built-in functions — math, strings, arrays, higher-order functions, and more.
   - title: 🌐 Try Online
     details: Full browser-based playground with syntax highlighting, examples, and instant output.
   - title: 🔓 MIT Licensed

@@ -1,6 +1,6 @@
 # Built-in Functions
 
-Zink ships with 30+ built-in functions. No imports needed.
+Zink ships with 28 built-in functions. No imports needed.
 
 ## I/O
 
@@ -39,8 +39,8 @@ Zink ships with 30+ built-in functions. No imports needed.
 | `len(arr)`                  | Number of elements                | `len([1,2,3])` → `3`                |
 | `push(arr, value)`          | Append to end (mutates)           | `push(arr, 4)`                       |
 | `pop(arr)`                  | Remove and return last            | `pop(arr)` → last element            |
-| `reverse(arr)`              | Reverse in place                  | `reverse([1,2,3])` → `[3,2,1]`      |
-| `sort(arr)`                 | Sort in place                     | `sort([3,1,2])` → `[1,2,3]`         |
+| `reverse(arr)`              | Reverse in place (mutates)        | `reverse([1,2,3])` → `[3,2,1]`      |
+| `sort(arr)`                 | Sort in place (mutates)           | `sort([3,1,2])` → `[1,2,3]`         |
 | `slice(arr, start, end)`    | Sub-array (non-mutating)          | `slice([1,2,3,4], 1, 3)` → `[2,3]`  |
 | `contains(arr, value)`      | Check membership                  | `contains([1,2,3], 2)` → `true`     |
 | `join(arr, separator)`      | Join into string                  | `join(["a","b"], ",")` → `"a,b"`    |

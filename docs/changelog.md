@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Language core**: variables (`let`), functions (`fn`), `return`, `if`/`else`, `while`, `loop N times`, `say`
 - **Types**: numbers (f64), strings with `{expr}` interpolation, booleans, null, arrays, first-class functions
 - **Operators**: arithmetic (`+`, `-`, `*`, `/`, `%`), comparison (`==`, `!=`, `<`, `>`, `<=`, `>=`), logical (`and`, `or`, `not`)
-- **30+ built-in functions**: math, string manipulation, array operations, higher-order functions
+- **28 built-in functions**: math, string manipulation, array operations, higher-order functions
 - **CLI**: file execution, interactive REPL with multi-line support, stdin pipe mode
 - **Browser playground** (`playground/`): React + Vite app with syntax highlighting, 8 examples, docs sidebar
 - **Documentation** (`docs/`): VitePress site with guide, reference, and API docs

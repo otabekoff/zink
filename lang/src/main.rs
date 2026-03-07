@@ -73,7 +73,7 @@ fn count_brace_depth(line: &str) -> i32 {
 }
 
 fn repl() {
-    println!("⚡ Zink v1.0 — REPL");
+    println!("⚡ Zink v0.1.0 — REPL");
     println!("   Type code, press Enter. Opens a block with {{ and closes with }}.");
     println!("   Type 'exit' or Ctrl+C to quit.\n");
 

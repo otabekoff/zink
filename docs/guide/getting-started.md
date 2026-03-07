@@ -38,7 +38,7 @@ echo 'say "Hello from pipe!"' | ./target/release/zink -
 
 ## Try Online
 
-No installation needed — use the [Zink Playground](https://zink-lang.github.io/playground/) to write and run Zink code directly in your browser.
+No installation needed — use the [Zink Playground](https://otabekoff.github.io/zink/playground/) to write and run Zink code directly in your browser.
 
 ## Your First Program
 
@@ -86,4 +86,4 @@ zink/
 - [Variables](/guide/variables) — Learn about `let` bindings
 - [Functions](/guide/functions) — Define and call functions
 - [Control Flow](/guide/control-flow) — `if`, `while`, and `loop`
-- [Built-in Functions](/reference/builtins) — 30+ functions included
+- [Built-in Functions](/reference/builtins) — 28 functions included
