@@ -164,7 +164,6 @@
     "publish": "npx @vscode/vsce publish"
   },
   "devDependencies": {
-    "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.11.0",
     "@types/vscode": "^1.75.0",
