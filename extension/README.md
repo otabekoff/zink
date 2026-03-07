@@ -66,7 +66,7 @@ The extension associates `.zink` files with the Zink language mode.
 
 ## Example
 
-```zink
+```ruby
 # Fibonacci sequence
 fn fib(n) {
   if n <= 1 { return n }

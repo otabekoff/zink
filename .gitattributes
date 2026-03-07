@@ -1,6 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+# Zink — highlight as Ruby on GitHub
+*.zink linguist-language=Ruby
+
 # Rust
 *.rs text diff=rust
 

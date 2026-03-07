@@ -2,14 +2,15 @@
 
 A fast, readable scripting language built in Rust.
 
-[![CI — Lang](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml)
-[![CI — Playground](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
-[![CI — Docs](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml)
-[![Deploy](https://github.com/otabekoff/zink/actions/workflows/deploy.yml/badge.svg)](https://github.com/otabekoff/zink/actions/workflows/deploy.yml)
-[![Release](https://img.shields.io/github/v/release/otabekoff/zink?label=Release&color=blue)](https://github.com/otabekoff/zink/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI — Lang](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-lang.yml?label=Lang&logo=rust&logoColor=white)](https://github.com/otabekoff/zink/actions/workflows/ci-lang.yml)
+[![CI — Playground](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-ide.yml?label=Playground&logo=react)](https://github.com/otabekoff/zink/actions/workflows/ci-ide.yml)
+[![CI — Docs](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/ci-docs.yml?label=Docs&logo=vitepress)](https://github.com/otabekoff/zink/actions/workflows/ci-docs.yml)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/otabekoff/zink/deploy.yml?label=Deploy&logo=github)](https://github.com/otabekoff/zink/actions/workflows/deploy.yml)
+[![VS Code Extension](https://img.shields.io/visual-studio-marketplace/v/otabekoff.zink-lang?label=Extension&logo=visualstudiocode&color=blue)](https://marketplace.visualstudio.com/items?itemName=otabekoff.zink-lang)
+[![Release](https://img.shields.io/github/v/release/otabekoff/zink?label=Release&logo=github&color=blue)](https://github.com/otabekoff/zink/releases/latest)
+[![License](https://img.shields.io/github/license/otabekoff/zink?label=License&color=green)](LICENSE)
 
-```zink
+```ruby
 # Hello, Zink!
 fn greet(name) {
   say "Hello, {name}! Welcome to Zink."
