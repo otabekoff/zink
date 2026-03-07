@@ -28,6 +28,15 @@ updates:
       - dependencies
       - docs
 
+  - package-ecosystem: npm
+    directory: /extension
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - vscode
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
