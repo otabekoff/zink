@@ -28,9 +28,24 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: Zink ${{ github.ref_name }}
-          generate_release_notes: true
           draft: false
           prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') || contains(github.ref, '-rc') }}
+          body: |
+            ## What's Included
+
+            ### Zink Interpreter
+            Complete interpreter with variables, functions, control flow, loops, and more.
+            Available for **Linux** (x64), **macOS** (ARM64), and **Windows** (x64).
+
+            ### VS Code Extension
+            Syntax highlighting, snippets, and integrated REPL.
+            Install the `.vsix` from the assets below.
+
+            ### Browser Playground
+            Try Zink directly at [otabekoff.github.io/zink/playground/](https://otabekoff.github.io/zink/playground/).
+
+            ---
+            **Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}
 
   build-binaries:
     name: Build ${{ matrix.artifact }}
@@ -76,11 +91,9 @@ jobs:
           Move-Item ${{ matrix.artifact }}-${{ github.ref_name }}.zip ../../../../
 
       - name: Upload Release Asset
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            ${{ matrix.artifact }}-${{ github.ref_name }}.tar.gz
-            ${{ matrix.artifact }}-${{ github.ref_name }}.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ github.ref_name }} ${{ matrix.artifact }}-${{ github.ref_name }}.* --clobber
 
   build-extension:
     name: Build VS Code Extension
@@ -106,6 +119,6 @@ jobs:
           npx @vscode/vsce package
 
       - name: Upload VSIX to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: extension/zink-lang-*.vsix
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ github.ref_name }} extension/zink-lang-*.vsix --clobber
